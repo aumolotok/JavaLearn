@@ -2,6 +2,11 @@ package main.common;
 
 import jdk.jfr.Description;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 public enum Subjects {
     Physics("Физика", SubjectType.Tech),
     Math("Математика", SubjectType.Tech),
@@ -32,4 +37,17 @@ public enum Subjects {
         Social,
         Natural
     }
+
+    @Override
+    public String toString() {
+        return translation;
+    }
+
+    public static Subjects getByTitle(String translation){
+        List<Subjects> values = Arrays.asList(Subjects.values());
+
+        return values.stream().filter( x -> x.translation.equalsIgnoreCase(translation)).collect(Collectors.toList()).get(0);
+    }
+
+
 }
