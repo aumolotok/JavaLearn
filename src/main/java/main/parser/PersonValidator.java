@@ -8,7 +8,9 @@ import java.util.List;
 
 public class PersonValidator {
 
-    private ArrayList<String> invalidStrings;
+    private ArrayList<String> invalidStrings = new ArrayList<String>(
+
+    );
 
     public ArrayList<String> getInvalidStrings() {
         return invalidStrings;
@@ -22,7 +24,7 @@ public class PersonValidator {
         return checkStringFormat(personString) && checkPersonCharacteristicForProperMark(personString, 5);
     }
 
-    private boolean checkStringFormat(String personString){
+    private boolean checkStringFormat(@org.jetbrains.annotations.NotNull String personString){
         boolean result = personString.matches("(\\S+\\s*\\|\\s*){3}\\d");
         if(result){
             return true;
