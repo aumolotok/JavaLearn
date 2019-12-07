@@ -39,6 +39,12 @@ public class Parser {
         }
     }
 
+
+
+    public Parser(String fileName){
+        this.fileName = fileName;
+    }
+
     private class PersonMark{
         public String Name;
         public String Surname;
@@ -52,10 +58,4 @@ public class Parser {
             this.Mark = Integer.parseInt(personCharacteristics.get(3));
         }
     }
-
-    public Parser(String fileName){
-        this.fileName = fileName;
-    }
-
-
 }
