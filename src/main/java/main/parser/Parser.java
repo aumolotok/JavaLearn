@@ -18,6 +18,7 @@ public class Parser {
 
     private String fileName;
     private String pattern = "((Ф|ф)амилия)(\\D+)((И|и)мя)(\\D+)((П|п)редмет)(\\D+)((О|о)ценка)";
+    private PersonValidator validator = new PersonValidator();
 
     private List<String> read() throws IOException {
         List<String> lines =  Files.readAllLines(Paths.get(fileName));
