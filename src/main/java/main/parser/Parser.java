@@ -28,24 +28,30 @@ public class Parser {
     public void Parse() throws IOException {
         List<String> lines = read().stream().filter( x -> !x.matches(pattern)).collect(Collectors.toList());
 
-        List<List<String>> characteristics = new ArrayList<List<String>>();
+        List<PersonMark> marks = new ArrayList<PersonMark>();
 
         for(String line : lines){
-            List<String> studentChars = Arrays.asList(line.split("\\s*\\|\\s*"));
-            if(studentChars.size() == 4) {
-                characteristics.add(studentChars);
+            if(!validator.isValidPersonString(line)){
+                continue;
             }
+            List<String> studentChars = Arrays.asList(line.split("\\s*\\|\\s*"));
+            marks.add(new PersonMark(studentChars));
         }
-
-        List<String> surnamesWithNames =  characteristics.stream().map( x -> x.get(0)+x.get(1)).distinct().collect(Collectors.toList());
-
-        for(String person : surnamesWithNames){
-
-        }
-
     }
 
+    private class PersonMark{
+        public String Name;
+        public String Surname;
+        public Subjects Subject;
+        public int Mark;
 
+        public PersonMark(List<String> personCharacteristics){
+            this.Surname = personCharacteristics.get(0);
+            this.Name = personCharacteristics.get(1);
+            this.Subject = Subjects.getByTitle(personCharacteristics.get(2));
+            this.Mark = Integer.parseInt(personCharacteristics.get(3));
+        }
+    }
 
     public Parser(String fileName){
         this.fileName = fileName;
