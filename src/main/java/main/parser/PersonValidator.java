@@ -18,8 +18,8 @@ public class PersonValidator {
 
     }
 
-    public boolean isValidPersonString(String personString, int maxMark){
-        return checkStringFormat(personString) && checkPersonCharacteristicForProperMark(personString, maxMark);
+    public boolean isValidPersonString(String personString){
+        return checkStringFormat(personString) && checkPersonCharacteristicForProperMark(personString, 5);
     }
 
     private boolean checkStringFormat(String personString){
