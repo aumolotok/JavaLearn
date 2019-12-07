@@ -19,31 +19,16 @@ public class PersonValidator {
     }
 
     public boolean isValidPersonString(String personString, int maxMark){
-        return checkPersonCharacteristicCount(personString) &&
-                checkPersonCharacteristicForEmpty(personString) &&
-                checkPersonCharacteristicForProperMark(personString, maxMark);
+        return checkStringFormat(personString) && checkPersonCharacteristicForProperMark(personString, maxMark);
     }
 
-    private boolean checkPersonCharacteristicCount(String personString){
-        String[] characteristic = personString.split("\\s*\\|\\s*");
-        if (characteristic.length == 4) {
+    private boolean checkStringFormat(String personString){
+        boolean result = personString.matches("(\\S+\\s*\\|\\s*){3}\\d");
+        if(result){
             return true;
         }
-        else{
-            invalidStrings.add(personString);
-            return false;
-        }
-    }
-
-    private boolean checkPersonCharacteristicForEmpty(String personString){
-        List<String> characteristic = Arrays.asList(personString.split("\\s*\\|\\s*"));
-        if (!characteristic.stream().anyMatch(line -> line.isEmpty())) {
-            return true;
-        }
-        else{
-            invalidStrings.add(personString);
-            return false;
-        }
+        invalidStrings.add(personString);
+        return false;
     }
 
     private boolean checkPersonCharacteristicForProperMark(String personString, int maxMark){
