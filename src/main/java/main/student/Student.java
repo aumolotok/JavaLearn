@@ -15,8 +15,6 @@ public class Student {
         return surname;
     }
 
-    public String getFullName() {return name + " " + surname}
-
     private Map<Subjects, Integer> subjectsMarks;
 
     public Map<Subjects, Integer> getSubjectsMarks() {
