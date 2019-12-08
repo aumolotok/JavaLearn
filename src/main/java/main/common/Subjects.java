@@ -47,5 +47,12 @@ public enum Subjects {
         return values.stream().filter( x -> x.translation.equalsIgnoreCase(translation)).collect(Collectors.toList()).get(0);
     }
 
+    public List<Subjects> getSubjectsByType(SubjectType type) {
+        List<Subjects> subjects = Arrays.stream(values())
+                                        .filter(x -> x.type.equals(type))
+                                        .collect(Collectors.toList());
+        return subjects;
+    }
+
 
 }
