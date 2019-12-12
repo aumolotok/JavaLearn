@@ -1,8 +1,10 @@
 package main.student;
 
-public class StudentAverageMarkInfo{
+import org.jetbrains.annotations.NotNull;
+
+public class StudentAverageMarkInfo implements Comparable<StudentAverageMarkInfo>{
     private String fullName;
-    private double averageMark;
+    private Double averageMark;
    // double percentOfAll;
     public double getAverageMark(){return averageMark;}
     public String getFullName(){return fullName;}
@@ -11,5 +13,10 @@ public class StudentAverageMarkInfo{
         this.fullName = fullname;
         this.averageMark = averageMark;
         //this.percentOfAll = percentage;
+    }
+
+    @Override
+    public int compareTo(@NotNull StudentAverageMarkInfo studentAverageMarkInfo) {
+        return averageMark.compareTo(studentAverageMarkInfo.getAverageMark());
     }
 }
