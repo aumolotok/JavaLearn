@@ -1,14 +1,11 @@
 package main;
 
-import main.common.Subjects;
 import main.parser.Parser;
 import main.parser.StudentsStatistics;
 import main.student.Student;
-import main.student.StudentAverageMarkInfo;
-import main.student.comparators.AverageComparator;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public class Main {
     public static void main(String[] args) throws IOException {
