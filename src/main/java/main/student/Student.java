@@ -28,7 +28,11 @@ public class Student {
     public double getAverageForSubjectType(Subjects.SubjectType type){
         List<Subjects> techSubjects = Subjects.getSubjectsByType(type);
 
-        Double unroundValue = techSubjects.stream().map(x -> subjectsMarks.get(x)).collect(Collectors.averagingDouble(num -> num));
+        Double unroundValue = techSubjects
+                .stream()
+                .map(x -> subjectsMarks.get(x))
+                .filter(x -> x !=null)
+                .collect(Collectors.averagingDouble(num -> num));
 
         return NumberUtils.roundDouble(unroundValue, 3);
     }

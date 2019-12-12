@@ -49,7 +49,9 @@ public class StudentsStatistics {
             Double percentageOfEntrance = (entrance / marksValues.size()) * 100;
             percent -= percentageOfEntrance;
 
-            studentsmarks.stream().filter(x -> x.getAverageMark() == value).forEach(x -> result.add(x));
+            studentsmarks
+                    .stream()
+                    .filter(mark -> mark.getAverageMark() == value).forEach(x -> result.add(x));
 
         }
         return result;

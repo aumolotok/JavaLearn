@@ -8,9 +8,7 @@ import java.util.List;
 
 public class PersonValidator {
 
-    private ArrayList<String> invalidStrings = new ArrayList<String>(
-
-    );
+    private ArrayList<String> invalidStrings = new ArrayList<String>();
 
     public ArrayList<String> getInvalidStrings() {
         return invalidStrings;

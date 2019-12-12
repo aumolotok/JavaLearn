@@ -21,7 +21,10 @@ public class Parser {
     }
 
     public List<Student> Parse() throws IOException {
-        List<String> lines = read().stream().filter( x -> !x.matches(pattern)).collect(Collectors.toList());
+        List<String> lines = read()
+                .stream()
+                .filter( line -> !line.matches(pattern))
+                .collect(Collectors.toList());
 
         List<PersonSubjectMark> marks = new ArrayList<PersonSubjectMark>();
 
@@ -45,7 +48,8 @@ public class Parser {
                 .collect(Collectors.toList());
 
         for(String surname : surnames) {
-            List<PersonSubjectMark> currentPersonMarks = personSubjectMarks.stream()
+            List<PersonSubjectMark> currentPersonMarks = personSubjectMarks
+                    .stream()
                     .filter(x -> x.Surname.equalsIgnoreCase(surname))
                     .collect(Collectors.toList());
 
@@ -53,7 +57,8 @@ public class Parser {
 
             Map<Subjects, Integer> marks = new HashMap<Subjects, Integer>();
 
-            currentPersonMarks.stream()
+            currentPersonMarks
+                    .stream()
                     .forEach(x -> marks.put(x.Subject, x.Mark));
 
             students.add(new Student(name, surname, marks));
@@ -78,5 +83,9 @@ public class Parser {
             this.Subject = Subjects.getByTitle(personCharacteristics.get(2));
             this.Mark = Integer.parseInt(personCharacteristics.get(3));
         }
+    }
+
+    public List<String> getInvalidLines(){
+        return validator.getInvalidStrings();
     }
 }
