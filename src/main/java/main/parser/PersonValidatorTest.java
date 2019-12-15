@@ -23,11 +23,6 @@ class PersonValidatorTest {
         validator = new PersonValidator();
     }
 
-
-    void getInvalidStrings() {
-    }
-
-
     @ParameterizedTest
     @MethodSource("provideStringsForIsBlank")
     void isValidPersonString(String string, boolean exResult) {
@@ -43,7 +38,7 @@ class PersonValidatorTest {
                 Arguments.of("Иванов|Петя|Информатика|1", true),
                 Arguments.of("Иванов | Петя |Информатика | ", false),
                 Arguments.of("Иванов | Петя | | 1", false),
-                Arguments.of(" | Петя |Информатика | 1", true)
+                Arguments.of(" | Петя |Информатика | 1", false)
         );
     }
 }
