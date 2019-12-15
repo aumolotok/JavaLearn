@@ -35,7 +35,27 @@ class StudentsStatisticsTest {
             new Student("ten", "ten", buildMap(5))
     );
 
-    static List<StudentAverageMarkInfo> stInfo1Exp = Arrays.asList(
+    static List<StudentAverageMarkInfo> stInfo1Exp70percent = Arrays.asList(
+            new StudentAverageMarkInfo("eight eight", 3.0),
+            new StudentAverageMarkInfo("nine nine", 4.0),
+            new StudentAverageMarkInfo("ten ten", 5.0)
+    );
+
+    static List<StudentAverageMarkInfo> stInfo1Exp60percent = Arrays.asList(
+            new StudentAverageMarkInfo("four four", 2.0),
+            new StudentAverageMarkInfo("five five", 2.0),
+            new StudentAverageMarkInfo("six six", 2.0),
+            new StudentAverageMarkInfo("seven seven", 2.0),
+            new StudentAverageMarkInfo("eight eight", 3.0),
+            new StudentAverageMarkInfo("nine nine", 4.0),
+            new StudentAverageMarkInfo("ten ten", 5.0)
+    );
+
+    static List<StudentAverageMarkInfo> stInfo1Exp10percent = Arrays.asList(
+            new StudentAverageMarkInfo("four four", 2.0),
+            new StudentAverageMarkInfo("five five", 2.0),
+            new StudentAverageMarkInfo("six six", 2.0),
+            new StudentAverageMarkInfo("seven seven", 2.0),
             new StudentAverageMarkInfo("eight eight", 3.0),
             new StudentAverageMarkInfo("nine nine", 4.0),
             new StudentAverageMarkInfo("ten ten", 5.0)
@@ -45,22 +65,23 @@ class StudentsStatisticsTest {
     void setUp() {
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Check results for students1 with percentage value [{2}]")
     @MethodSource("averageTestData")
-    void getStudentsAverageMoreThanPersentageOfStudentsHas(List<Student> list, List<StudentAverageMarkInfo> exResultList) {
+    void getStudentsAverageMoreThanPersentageOfStudentsHas(List<Student> list, List<StudentAverageMarkInfo> exResultList, Double percentage) {
         StudentsStatistics statistic = new StudentsStatistics(list);
 
-        List<StudentAverageMarkInfo> result = statistic.getStudentsAverageMoreThanPersentageOfStudentsHas(70.0);
+        List<StudentAverageMarkInfo> result = statistic.getStudentsAverageMoreThanPersentageOfStudentsHas(percentage);
 
         assertThat(result).hasSameSizeAs(exResultList);
-
         assertThat(result).hasSameElementsAs(exResultList);
 
     }
 
     private static Stream<Arguments> averageTestData(){
         return Stream.of(
-                Arguments.of(students1, stInfo1Exp));
+                Arguments.of(students1, stInfo1Exp70percent, 70.0),
+                Arguments.of(students1, stInfo1Exp60percent, 60.0),
+                Arguments.of(students1, stInfo1Exp60percent, 20.0));
     }
 
     private static HashMap<Subjects, Integer> buildMap(Integer mark){
