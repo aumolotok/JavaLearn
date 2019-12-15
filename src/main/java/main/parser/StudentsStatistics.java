@@ -43,10 +43,19 @@ public class StudentsStatistics {
 
         Double percent = 100.0d;
         while (percent > percentage){
+            if(marksValuesStack.size() == 0){
+                break;
+            }
+
             Double value = marksValuesStack.pop();
 
-            Double entrance = Double.valueOf(marksValues.stream().filter(x -> x == value).count());
+            Double entrance = Double.valueOf(studentsmarks.stream().filter(x -> x .getAverageMark()== value).count());
             Double percentageOfEntrance = (entrance / studentsmarks.size()) * 100;
+
+            if(marksValuesStack.size() == 0 && percent - percentageOfEntrance < percentage){
+                break;
+            }
+
             percent -= percentageOfEntrance;
 
             studentsmarks
