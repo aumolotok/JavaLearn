@@ -46,7 +46,7 @@ public class StudentsStatistics {
             Double value = marksValuesStack.pop();
 
             Double entrance = Double.valueOf(marksValues.stream().filter(x -> x == value).count());
-            Double percentageOfEntrance = (entrance / marksValues.size()) * 100;
+            Double percentageOfEntrance = (entrance / studentsmarks.size()) * 100;
             percent -= percentageOfEntrance;
 
             studentsmarks
